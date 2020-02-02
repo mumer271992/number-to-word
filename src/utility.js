@@ -14,6 +14,32 @@ const tens = [
   'ninety'
 ];
 let word = '';
+
+const ifDashRequired = str => {
+  return tens.indexOf(str.split(' ').pop()) > 1;
+};
+
+const ifAndRequired = str => {
+  return str.split(' ').pop() === 'hundred';
+};
+
+const cleanWord = str => {
+  let arr = str.trimRight(' ').split(' ');
+  const poped = arr.pop();
+  if (poped === 'and') {
+    str = arr.join(' ');
+  } else if (poped.indexOf('-') > 1) {
+    console.log(str, poped);
+    const arrr = poped.split('-');
+    if (arrr.pop() === '') {
+      console.log('cleaning required!');
+      str = arr.join(' ') + arrr[0];
+    }
+    // str = arr.join(' ') + poped.substring(0, poped.indexOf('-'));
+  }
+  return str;
+};
+
 const numToWords = number => {
   let remainder = 0;
   let dividend = 0;
@@ -40,5 +66,5 @@ const numToWords = number => {
 
 export const convert = number => {
   word = '';
-  return numToWords(number, word, num, tens);
+  return cleanWord(numToWords(number, word, num, tens));
 };

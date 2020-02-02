@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.scss';
-import { validate } from './FormValidation';
+import { convert } from './utility';
 
 function App() {
   const [state, setState] = useState({
@@ -33,7 +33,8 @@ function App() {
     if (!validate(state.digit)) {
       return;
     }
-    setState({ ...state, result: state.digit });
+    const result = convert(parseInt(state.digit));
+    setState({ ...state, result: result });
   };
 
   return (

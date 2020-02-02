@@ -22,7 +22,9 @@ body {
     padding: 3rem 1rem;
     margin-bottom: 2rem;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-
+    .error {
+      color: $primary;
+    }
     input {
       width: 100%;
       box-sizing: border-box;
@@ -54,7 +56,7 @@ body {
       text-align: center;
       box-sizing: border-box;
       outline: none;
-      margin: 0;
+      margin: 0.5rem 0;
       transition: 0.1s;
       font-weight: 500;
       padding: 12px 20px;

@@ -11,10 +11,10 @@ function App() {
   const validate = value => {
     const regex = /^\d+$/;
     if (!value) {
-      setState({ ...state, error: 'Please enter a number!' });
+      setState(state => ({ ...state, error: 'Please enter a number!' }));
       return false;
     } else if (!regex.test(value)) {
-      setState({ ...state, error: 'Only numbers are allowed!' });
+      setState(state => ({ ...state, error: 'Only numbers are allowed!' }));
       return false;
     }
     return true;
@@ -22,10 +22,8 @@ function App() {
 
   const changeHandler = ({ target }) => {
     const { name, value } = target;
-    if (!validate(value)) {
-      return;
-    }
-    setState({ ...state, [name]: value, error: '' });
+    setState(state => ({ ...state, [name]: value, error: '' }));
+    validate(value);
   };
 
   const submit = e => {
@@ -34,26 +32,31 @@ function App() {
       return;
     }
     const result = convert(parseInt(state.digit));
-    setState({ ...state, result: result });
+    setState(state => ({ ...state, result: result }));
   };
 
   return (
     <div className="App">
       <div className="header">Number to word converter</div>
-      <form onSubmit={submit}>
+      <form onSubmit={submit} data-test="form">
         <div>
           <input
             name="digit"
             placeholder="Number (digits) goes here..."
+            value={state.digit}
             onChange={changeHandler}
           />
           {state.error && state.error !== '' && (
-            <span className="error">{state.error}</span>
+            <span data-test="validation-error" className="error">
+              {state.error}
+            </span>
           )}
         </div>
         <button type="submit">Convert</button>
       </form>
-      <div className="result-box">{state.result}</div>
+      <div data-test="result-box" className="result-box">
+        {state.result}
+      </div>
     </div>
   );
 }

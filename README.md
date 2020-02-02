@@ -4,6 +4,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `yarn install`
+
+This will download all node_modules and after that you can run any of the following commad
+
 ### `yarn start`
 
 Runs the app in the development mode.<br />

@@ -15,27 +15,16 @@ const tens = [
 ];
 let word = '';
 
-const ifDashRequired = str => {
-  return tens.indexOf(str.split(' ').pop()) > 1;
-};
-
-const ifAndRequired = str => {
-  return str.split(' ').pop() === 'hundred';
-};
-
 const cleanWord = str => {
-  let arr = str.trimRight(' ').split(' ');
-  const poped = arr.pop();
+  let wordsArray = str.trimRight(' ').split(' ');
+  const poped = wordsArray.pop();
   if (poped === 'and') {
-    str = arr.join(' ');
+    str = wordsArray.join(' ');
   } else if (poped.indexOf('-') > 1) {
-    console.log(str, poped);
     const arrr = poped.split('-');
     if (arrr.pop() === '') {
-      console.log('cleaning required!');
-      str = arr.join(' ') + arrr[0];
+      str = wordsArray.join(' ') + arrr[0];
     }
-    // str = arr.join(' ') + poped.substring(0, poped.indexOf('-'));
   }
   return str;
 };
